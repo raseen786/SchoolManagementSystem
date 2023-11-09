@@ -1,0 +1,57 @@
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+
+                        <div class="mb-md-5 mt-md-4">
+
+                            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                                <p class="text-white-50 mb-5">Please enter your login and password!</p>
+
+                                <div class="form-outline form-white mb-4">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Username</mat-label>
+                                        <input matInput formControlName="username">
+                                        <mat-error
+                                            *ngIf="formControls['username'].invalid && formControls['username'].touched">
+                                            <span *ngIf="formControls['username'].hasError('required')">Username is
+                                                required.</span>
+                                            <span *ngIf="formControls['username'].hasError('minlength')">Username must
+                                                be at
+                                                least 3 characters long.</span>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-outline form-white mb-4">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Password</mat-label>
+                                        <input matInput type="password" formControlName="password">
+                                        <mat-error
+                                            *ngIf="formControls['password'].invalid && formControls['password'].touched">
+                                            <span *ngIf="formControls['password'].hasError('required')">Password is
+                                                required.</span>
+                                            <span *ngIf="formControls['password'].hasError('minlength')">Password must
+                                                be at
+                                                least 6 characters long.</span>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <p class="small text-danger error">
+                                    {{error}}
+                                </p>
+
+                                <button class="btn btn-outline-light btn-lg px-5"  [disabled]="loginForm.invalid" type="submit">Login</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

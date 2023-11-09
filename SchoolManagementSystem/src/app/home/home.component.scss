@@ -1,0 +1,11 @@
+:host {
+    background-color: beige;
+
+    .mat-calendar-period-button {
+        pointer-events: none;
+    }
+
+    .mat-calendar-arrow {
+        display: none;
+    }
+}

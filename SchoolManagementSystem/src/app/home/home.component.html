@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+    <!-- Filters using Bootstrap select -->
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <select class="form-select" [(ngModel)]="selectedFilter" (change)="onPrimarySecondaryChange()">
+                <option selected disabled value="undefined">Select Primary/Secondary</option>
+                <option *ngFor="let option of primarySecondaryOptions" [ngValue]="option.value"
+                    >{{ option.label }}</option>
+            </select>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <select class="form-select">
+                <option selected disabled>Select Year</option>
+                <option *ngFor="let year of yearOptions" [ngValue]="year.value">{{ year.label }}</option>
+            </select>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <select class="form-select">
+                <option selected disabled>Select Class</option>
+                <option *ngFor="let class of classOptions" [ngValue]="class.value">{{ class.label }}</option>
+            </select>
+        </div>
+    </div>
+
+
+    <!-- Submit button -->
+    <button type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+
+    <!-- Table to display student data -->
+    <table mat-table [dataSource]="dataSource">
+        <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+            <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+            <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]"></mat-paginator>
+</div>

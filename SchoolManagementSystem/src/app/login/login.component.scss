@@ -1,0 +1,18 @@
+::ng-deep {
+    mat-form-field {
+        width: 100%;
+    }
+}
+
+.gradient-custom {
+    background-color: beige;
+}
+
+.error {
+    height: 20px;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    pointer-events: all;
+}
