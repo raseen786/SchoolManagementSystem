@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="modal-header">
+        <h1 class="modal-title">Add New Student</h1>
+        <button type="button" class="btn btn-default" aria-label="Close" (click)="onNoClick()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div *ngIf="errorMessage" class="mt-1 alert alert-danger text-center">
+        {{ errorMessage }}
+    </div>
+    <div class="modal-body">
+        <!-- Add your form fields here -->
+        <form [formGroup]="studentForm">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="id">Id</label>
+                    <input type="text" class="form-control" id="id" formControlName="id">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputName">Name</label>
+                    <input type="text" class="form-control" id="inputName" formControlName="name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="inputAge">Age</label>
+                    <input type="number" class="form-control" id="inputAge" formControlName="age">
+                </div>
+                <div class="form-group col-md-6 pe-none">
+                    <label for="inputCategory">Category</label>
+                    <input type="text" class="form-control" [ngModel]="data.category"
+                        [ngModelOptions]="{standalone: true}" readonly>
+                </div>
+            </div>
+
+            <div class="row pe-none">
+                <div class="form-group col-md-6">
+                    <label for="inputYear">Year</label>
+                    <input type="text" class="form-control user-select-none" [ngModel]="data.year"
+                        [ngModelOptions]="{standalone: true}" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputClass">Class</label>
+                    <input type="text" class="form-control" [ngModel]="data.class" [ngModelOptions]="{standalone: true}"
+                        readonly>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <label for="inputImage">Image URL</label><input type="file" class="form-control-file" id="inputImage"
+                    (change)="onImageChange($event)" accept="image/*">
+            </div>
+
+            <!-- Optional: Subject fields -->
+            <div formGroupName="subjects">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="inputMath">Math</label>
+                        <input type="text" class="form-control" id="inputMath" formControlName="math">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputScience">Science</label>
+                        <input type="text" class="form-control" id="inputScience" formControlName="science">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputEnglish">English</label>
+                        <input type="text" class="form-control" id="inputEnglish" formControlName="english">
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="modal-footer me-1 mt-1 mb-1">
+        <button type="button" class="btn btn-secondary" (click)="onNoClick()">Cancel</button>
+        <button type="button" class="btn btn-primary" [disabled]="!studentForm.valid" (click)="onSubmit()">Save</button>
+    </div>
+</div>

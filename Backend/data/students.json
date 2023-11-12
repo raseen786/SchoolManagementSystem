@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": 11,
     "name": "John Doe",
     "age": 20,
     "grade": "A",
@@ -9,25 +9,10 @@
       "science": "B",
       "english": "A"
     },
-    "year": "3",
-    "class": "2",
+    "year": "7",
+    "class": "3",
     "image": "https://example.com/john_doe.jpg",
     "category": "primary"
-  },
-  {
-    "id": 2,
-    "name": "Jane Smith",
-    "age": 21,
-    "grade": "B",
-    "subjects": {
-      "math": "C",
-      "science": "A",
-      "english": "B"
-    },
-    "year": "",
-    "class": "1",
-    "image": "https://example.com/jane_smith.jpg",
-    "category": "KG"
   },
   {
     "id": 3,

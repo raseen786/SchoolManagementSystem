@@ -16,9 +16,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { NewStudentModalComponent } from './new-student-modal/new-student-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import { ViewStudentModalComponent } from './view-student-modal/view-student-modal.component'
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent, NavbarComponent],
+  declarations: [AppComponent, LoginComponent, HomeComponent, NavbarComponent, NewStudentModalComponent, ViewStudentModalComponent],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -34,6 +39,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatPaginatorModule,
     MatTableModule,
     ReactiveFormsModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatIconModule
   ],
   providers: [AuthGuard, MatDatepickerModule],
   bootstrap: [AppComponent],
