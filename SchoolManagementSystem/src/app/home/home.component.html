@@ -4,22 +4,22 @@
     <div class="row">
         <div class="col-md-4 mb-3">
             <select class="form-select" [(ngModel)]="selectedFilter" (change)="onPrimarySecondaryChange()">
-                <option selected disabled value="undefined">Select Primary/Secondary</option>
+                <option selected disabled value="undefined">Select KG/Primary/Secondary</option>
                 <option *ngFor="let option of primarySecondaryOptions" [ngValue]="option.value"
                     >{{ option.label }}</option>
             </select>
         </div>
 
         <div class="col-md-4 mb-3">
-            <select class="form-select">
-                <option selected disabled>Select Year</option>
+            <select class="form-select" [(ngModel)]="selectedYear" (change)="onYearChange()">
+                <option selected disabled value="undefined">Select Year</option>
                 <option *ngFor="let year of yearOptions" [ngValue]="year.value">{{ year.label }}</option>
             </select>
         </div>
 
         <div class="col-md-4 mb-3">
-            <select class="form-select">
-                <option selected disabled>Select Class</option>
+            <select class="form-select" [(ngModel)]="selectedClass">
+                <option selected disabled value="undefined">Select Class</option>
                 <option *ngFor="let class of classOptions" [ngValue]="class.value">{{ class.label }}</option>
             </select>
         </div>

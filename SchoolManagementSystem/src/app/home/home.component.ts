@@ -16,12 +16,18 @@ export class HomeComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
   public primarySecondaryOptions: Filter[] = [
+    { label: 'KG', value: 'KG' },
     { label: 'Primary', value: 'primary' },
     { label: 'Secondary', value: 'secondary' },
   ];
+  public primaryClasses: Filter[];
+  public kgClasses: Filter[];
+  public secondaryClasses: Filter[];
   public primaryYears: Filter[];
   public secondaryYears: Filter[];
   public selectedFilter: string | undefined;
+  public selectedYear: string | undefined;
+  public selectedClass: string | undefined;
 
   public students: Student[] = [
     { id: 1, name: 'Alice', year: 1, class: 'Class A' },
@@ -42,29 +48,36 @@ export class HomeComponent {
 
   constructor() {
     this.dataSource = new MatTableDataSource<Student>(this.students);
+    this.primaryClasses = [];
+    this.kgClasses = [];
+    this.secondaryClasses = [];
     this.primaryYears = [];
     this.secondaryYears = [];
     this.yearOptions = [];
-    const currentYear = new Date().getFullYear();
+    this.classOptions = [];
 
-    // Populate the yearOptions array with the last 12 years
-    for (let i = currentYear; i > currentYear - 30; i--) {
-      this.yearOptions.push({ label: `${i}`, value: `${i}` });
+    // Populate the yearOptions array with the 9 years
+    for (let i = 1; i <= 9; i++) {
+      this.yearOptions.push({ label: `Grade ${i}`, value: `${i}` });
+      if (i <= 5) {
+        this.primaryYears.push({ label: `Grade ${i}`, value: `${i}` });
+      } else {
+        this.secondaryYears.push({ label: `Grade ${i}`, value: `${i}` });
+      }
     }
 
     // Add KG classes
     for (let i = 1; i <= 3; i++) {
-      this.primaryYears.push({ label: `KG-${i}`, value: `KG-${i}` });
+      this.kgClasses.push({ label: `Class ${i}`, value: `${i}` });
     }
 
     // Add numeric classes from 1 to 5
     for (let i = 1; i <= 5; i++) {
-      this.primaryYears.push({ label: `Class ${i}`, value: `Class${i}` });
+      this.primaryClasses.push({ label: `Class ${i}`, value: `${i}` });
       if (i !== 5) {
-        this.secondaryYears.push({ label: `Class ${i}`, value: `Class${i}` });
+        this.secondaryClasses.push({ label: `Class ${i}`, value: `${i}` });
       }
     }
-    this.classOptions = this.primaryYears.slice();
   }
 
   public ngAfterViewInit() {
@@ -76,9 +89,28 @@ export class HomeComponent {
 
   public onPrimarySecondaryChange(): void {
     if (this.selectedFilter === 'primary') {
-      this.classOptions = [...this.primaryYears];
+      this.classOptions = [...this.primaryClasses];
+      this.yearOptions = [...this.primaryYears];
+    } else if(this.selectedFilter === 'secondary'){
+      this.classOptions = [...this.secondaryClasses];
+      this.yearOptions = [...this.secondaryYears];
     } else {
-      this.classOptions = [...this.secondaryYears];
+      this.classOptions = [...this.kgClasses];
+      this.yearOptions = [];
+      this.selectedYear = undefined;
+    }
+  }
+
+  public onYearChange(): void {
+    if (this.selectedYear === undefined) {
+      return;
+    }
+    if (Number(this.selectedYear) <= 5) {
+      this.selectedFilter = 'primary';
+      this.classOptions = [...this.primaryClasses];
+    } else {
+      this.selectedFilter = 'secondary';
+      this.classOptions = [...this.secondaryClasses];
     }
   }
 
