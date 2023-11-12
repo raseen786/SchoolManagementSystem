@@ -48,7 +48,7 @@
           {{ student.name }}
         </ng-container>
         <ng-template #editMode>
-          <input class="table-input" [ngModel]="editingStudent.name" [value]="student.name" name="name" required>
+          <input class="table-input" [(ngModel)]="editingStudent.name" [value]="student.name" name="name" required>
         </ng-template>
       </td>
     </ng-container>
