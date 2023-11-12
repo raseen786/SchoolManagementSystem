@@ -12,7 +12,7 @@ app.use(bodyParser.json())
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
 
-    fs.readFile('users.json', 'utf8', (err, data) => {
+    fs.readFile('data/users.json', 'utf8', (err, data) => {
         if (err) {
             res.status(500).json({ message: 'Internal server error' });
             return;
@@ -31,6 +31,48 @@ app.post('/login', (req, res) => {
         }
     });
 });
+
+
+// API endpoint to handle the request
+app.post('/api/students', (req, res) => {
+    try {
+      // Read data from the JSON file (replace 'data.json' with your actual file name)
+      const jsonData = JSON.parse(fs.readFileSync('data/students.json', 'utf8'));
+  
+      // Process the request data
+      const requestData = req.body;
+  
+      // Your logic to process the request and get the result from jsonData
+      const result = processData(requestData, jsonData);
+  
+      // Return the result as JSON
+      res.json(result);
+    } catch (error) {
+      console.error('Error:', error.message);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+  
+  function processData(requestData, jsonData) {
+
+    let data = jsonData;
+    let filterType = requestData.filter;
+    let year = requestData.year;
+    let studentClass = requestData.class;
+    // Apply filters
+    if (filterType) {
+        data = data.filter(student => student.category === filterType);
+    }
+
+    if (year) {
+        data = data.filter(student => student.year === year);
+    }
+
+    if (studentClass) {
+        data = data.filter(student => student.class === studentClass);
+    }
+    return { message: 'Successfully processed request', data };
+  }
 
 const PORT = 3000;
 

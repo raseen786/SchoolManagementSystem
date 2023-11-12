@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Filter, Student } from '../services/student.service';
+import { Filter, Student, StudentService } from '../services/student.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
@@ -10,6 +10,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class HomeComponent {
   public classOptions: Filter[];
+  public errorMessage: string = '';
 
   public dataSource: MatTableDataSource<Student>;
   public displayedColumns: string[] = ['id', 'name', 'year', 'class'];
@@ -29,25 +30,10 @@ export class HomeComponent {
   public selectedYear: string | undefined;
   public selectedClass: string | undefined;
 
-  public students: Student[] = [
-    { id: 1, name: 'Alice', year: 1, class: 'Class A' },
-    { id: 2, name: 'Bob', year: 2, class: 'Class B' },
-    { id: 3, name: 'Charlie', year: 3, class: 'Class C' },
-    { id: 4, name: 'David', year: 1, class: 'Class A' },
-    { id: 5, name: 'Eva', year: 2, class: 'Class B' },
-    { id: 6, name: 'Frank', year: 3, class: 'Class C' },
-    { id: 7, name: 'Grace', year: 1, class: 'Class A' },
-    { id: 8, name: 'Henry', year: 2, class: 'Class B' },
-    { id: 9, name: 'Ivy', year: 3, class: 'Class C' },
-    { id: 10, name: 'Jack', year: 1, class: 'Class A' },
-    { id: 11, name: 'Katie', year: 2, class: 'Class B' },
-    { id: 12, name: 'Leo', year: 3, class: 'Class C' },
-  ];
-
   public yearOptions: Filter[];
 
-  constructor() {
-    this.dataSource = new MatTableDataSource<Student>(this.students);
+  constructor(private studentService: StudentService) {
+    this.dataSource = new MatTableDataSource<Student>();
     this.primaryClasses = [];
     this.kgClasses = [];
     this.secondaryClasses = [];
@@ -81,6 +67,7 @@ export class HomeComponent {
   }
 
   public ngAfterViewInit() {
+    this.onSubmit();
     if (undefined !== this.paginator) {
       this.dataSource.paginator = this.paginator;
       this.dataSource.paginator.pageSize = 5;
@@ -91,7 +78,7 @@ export class HomeComponent {
     if (this.selectedFilter === 'primary') {
       this.classOptions = [...this.primaryClasses];
       this.yearOptions = [...this.primaryYears];
-    } else if(this.selectedFilter === 'secondary'){
+    } else if (this.selectedFilter === 'secondary') {
       this.classOptions = [...this.secondaryClasses];
       this.yearOptions = [...this.secondaryYears];
     } else {
@@ -115,6 +102,22 @@ export class HomeComponent {
   }
 
   public onSubmit(): void {
-    // Handle form submission, filter students, and populate 'students' array
+    // Handle form submission, filter students, and populate 'students' array// Prepare the data to be sent to the server
+    const formData = {
+      filter: this.selectedFilter,
+      year: this.selectedYear,
+      class: this.selectedClass,
+    };
+    this.studentService
+      .getStudents(formData)
+      .then((data: Student[]) => {
+        this.dataSource.data = data;
+        // this.dataSource.renderRows();
+        this.errorMessage = '';
+      })
+      .catch(() => {
+        this.dataSource.data = [];
+        this.errorMessage = 'An error occurred while fetching students.';
+      });
   }
 }

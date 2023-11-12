@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "age": 20,
+    "grade": "A",
+    "subjects": {
+      "math": "A",
+      "science": "B",
+      "english": "A"
+    },
+    "year": "3",
+    "class": "2",
+    "image": "https://example.com/john_doe.jpg",
+    "category": "primary"
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "age": 21,
+    "grade": "B",
+    "subjects": {
+      "math": "C",
+      "science": "A",
+      "english": "B"
+    },
+    "year": "",
+    "class": "1",
+    "image": "https://example.com/jane_smith.jpg",
+    "category": "KG"
+  },
+  {
+    "id": 3,
+    "name": "Alice Johnson",
+    "age": 19,
+    "grade": "A",
+    "subjects": {
+      "math": "A",
+      "science": "B",
+      "english": "A"
+    },
+    "year": "5",
+    "class": "3",
+    "image": "https://example.com/alice_johnson.jpg",
+    "category": "primary"
+  },
+  {
+    "id": 4,
+    "name": "Bob Wilson",
+    "age": 22,
+    "grade": "C",
+    "subjects": {
+      "math": "C",
+      "science": "B",
+      "english": "C"
+    },
+    "year": "2",
+    "class": "5",
+    "image": "https://example.com/bob_wilson.jpg",
+    "category": "primary"
+  },
+  {
+    "id": 5,
+    "name": "Eva Turner",
+    "age": 20,
+    "grade": "B",
+    "subjects": {
+      "math": "B",
+      "science": "A",
+      "english": "B"
+    },
+    "year": "7",
+    "class": "4",
+    "image": "https://example.com/eva_turner.jpg",
+    "category": "secondary"
+  },
+  {
+    "id": 6,
+    "name": "Charlie Brown",
+    "age": 21,
+    "grade": "A",
+    "subjects": {
+      "math": "A",
+      "science": "B",
+      "english": "A"
+    },
+    "year": "4",
+    "class": "4",
+    "image": "https://example.com/charlie_brown.jpg",
+    "category": "primary"
+  },
+  {
+    "id": 7,
+    "name": "Sophia Clark",
+    "age": 20,
+    "grade": "B",
+    "subjects": {
+      "math": "B",
+      "science": "C",
+      "english": "B"
+    },
+    "year": "6",
+    "class": "2",
+    "image": "https://example.com/sophia_clark.jpg",
+    "category": "secondary"
+  },
+  {
+    "id": 8,
+    "name": "David Miller",
+    "age": 22,
+    "grade": "C",
+    "subjects": {
+      "math": "C",
+      "science": "B",
+      "english": "C"
+    },
+    "year": "8",
+    "class": "2",
+    "image": "https://example.com/david_miller.jpg",
+    "category": "secondary"
+  },
+  {
+    "id": 9,
+    "name": "Grace Lee",
+    "age": 19,
+    "grade": "A",
+    "subjects": {
+      "math": "A",
+      "science": "B",
+      "english": "A"
+    },
+    "year": "9",
+    "class": "1",
+    "image": "https://example.com/grace_lee.jpg",
+    "category": "secondary"
+  },
+  {
+    "id": 10,
+    "name": "Michael Davis",
+    "age": 21,
+    "grade": "B",
+    "subjects": {
+      "math": "B",
+      "science": "B",
+      "english": "B"
+    },
+    "year": "",
+    "class": "2",
+    "image": "https://example.com/michael_davis.jpg",
+    "category": "KG"
+  }
+]
